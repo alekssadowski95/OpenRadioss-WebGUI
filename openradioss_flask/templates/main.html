@@ -1,26 +1,7 @@
 <!DOCTYPE html>
 <html>
 <body>
-    <script type="text/javascript" src="{{ url_for('static', filename='polyfill.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='vtk.js') }}"></script>
-    <script type="text/javascript">
-        // --------------------------------------------------------------------------
-        // Example code
-        // --------------------------------------------------------------------------
-        var fullScreenRenderer = vtk.Rendering.Misc.vtkFullScreenRenderWindow.newInstance();
-        var actor              = vtk.Rendering.Core.vtkActor.newInstance();
-        var mapper             = vtk.Rendering.Core.vtkMapper.newInstance();
-        var cone               = vtk.Filters.Sources.vtkConeSource.newInstance();
-
-        actor.setMapper(mapper);
-        mapper.setInputConnection(cone.getOutputPort());
-
-        var renderer = fullScreenRenderer.getRenderer();
-        renderer.addActor(actor);
-        renderer.resetCamera();
-
-        var renderWindow = fullScreenRenderer.getRenderWindow();
-        renderWindow.render();
-    </script>
+<h1>Hello World!</h1>
+<a href="{{ url_for('vtk') }}">Show vtk</a>
 </body>
 </html>

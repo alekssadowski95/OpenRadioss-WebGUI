@@ -1,9 +1,11 @@
-from openradioss_flask import window
+from openradioss_flask import app
 
 import webview
 
 
 if __name__ == '__main__':
+    window = webview.create_window('OpenRadioss', app)
+    
     try:
         import pyi_splash
 
