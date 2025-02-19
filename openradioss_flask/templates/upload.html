@@ -17,11 +17,8 @@
 <h1>OpenRadioss</h1>
 <span class="btn btn-outline-secondary">{{ config['CORE_COUNT'] }} cores</span>
 <div class="btn-group" role="group" aria-label="Basic example">
-    <a class="btn btn-primary" href="{{ url_for('upload_calculix_input') }}">Upload calculix input</a>
-    <a class="btn btn-light" href="{{ url_for('read_rad_input') }}">Show rad input deck</a>
-    <a class="btn btn-light" href="{{ url_for('read_rad_log') }}">Show rad log</a>
-    <a class="btn btn-light" href="{{ url_for('read_rad_anim') }}">Show rad animation</a>
-    <a class="btn btn-light" href="{{ url_for('read_vtk_anim') }}">Show vtk animation</a>
+    <a class="btn btn-light" href="{{ url_for('upload_calculix_input') }}">Upload input deck</a>
+    <a class="btn btn-light" href="{{ url_for('read_result') }}">Show result</a>
 </div>
 <br><br>
 <form method="POST" enctype="multipart/form-data">

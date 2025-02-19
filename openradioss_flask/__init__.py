@@ -12,15 +12,15 @@ from wtforms.fields import SubmitField
 from .inp2rad import start as convert_inp_to_rad
 
 import psutil
+import threading
 
 
-'''
-1. Upload calculix input
-2. Create rad input deck (0000, 0001)
-3. Create rad animation
-4. Create vtk animation
-'''
+paths_to_data = {
+    "inp": None,
+    "rad0000": None,
+    "rad0001": None,
 
+}
 
 app = Flask(__name__)
 
@@ -35,14 +35,6 @@ app.config['OPENRADIOSS_PATH'] = os.path.join(os.path.dirname(app.config['APP_PA
 print(app.config['OPENRADIOSS_PATH'])
 
 app.config['CORE_COUNT'] = psutil.cpu_count(logical=False)
-
-'''
-session["current_inp_path"] = "No input file"
-session["current_rad_0001_path"] = "No rad0001 file"
-session["current_rad_0002_path"] = "No rad0002 file"
-session["current_rad_anim_paths"] = ["No rad anim files"]
-session["current_vtk_anim_paths"] = ["No vtk anim files"]
-'''
 
 # Add secret key
 app.config['SECRET_KEY'] = 'afs87fas7bfsa98fbasbas98fh78oizu'
@@ -66,12 +58,10 @@ def upload_calculix_input():
     except:
         pass
     if form.validate_on_submit():
-        # clear session
-        session['current_inp_path'] = None
-        session['current_rad_inp_paths'] = None
-        session['current_log_paths'] = None
-        session['current_rad_anim_paths'] = None
-        session['current_vtk_anim_paths'] = None
+        # clear data
+        paths_to_data["inp"] = None
+        paths_to_data["rad0000"] = None
+        paths_to_data["rad0001"] = None
 
         # Get the file from the form
         file = form.upload.data
@@ -82,30 +72,35 @@ def upload_calculix_input():
         # Save the file to the designated upload folder
         inp_file_path = os.path.join(app.config['APP_PATH'], app.config['UPLOAD_FOLDER'], filename)
         file.save(inp_file_path)
-        session['current_inp_path'] = inp_file_path
+        paths_to_data["inp"] = inp_file_path
+        current_inp_path_wo_ext = os.path.splitext(inp_file_path)[0]
+        paths_to_data["rad0000"] = current_inp_path_wo_ext + "_0000.rad"
+        paths_to_data["rad0001"] = current_inp_path_wo_ext + "_0001.rad"
 
-        rad_inp_file_paths = create_rad_input(inp_file_path)
-        rad_anim_file_paths = run_openradioss(rad_inp_file_paths)
-        vtk_anim_paths = create_vtk_anim(rad_anim_file_paths)
-        
+        threading.Thread(target = convert_inp_to_rad, args = (inp_file_path, )).start()
+
         return redirect(url_for('read_result'))
     return render_template('upload.html', form = form, content = content, onfig = app.config)
 
 @app.route("/read-result")
 def read_result():
+    print(paths_to_data["rad0000"])
     content = "No result"
-    return render_template('file.html', content = content, config = app.config)
+    try:
+        if paths_to_data["rad0000"]:    
+            print("fsdfsd")
+            with open(paths_to_data["rad0000"], 'r') as file_0:
+                content = file_0.read()
+            with open(paths_to_data["rad0001"], 'r') as file_1:
+                content = content + (file_1.read())
+    except:
+        pass
+    return render_template('result.html', content = content, config = app.config)
 
 @app.route("/read-logs")
 def read_logs():
     content = "No logs"
     return render_template('file.html', content = content, config = app.config)
-
-def create_rad_input():
-    current_inp_path = session['current_inp_path']
-    current_inp_path_wo_ext = os.path.splitext(current_inp_path)[0]
-    convert_inp_to_rad(current_inp_path)
-    return (current_inp_path_wo_ext + "_0000.rad", current_inp_path_wo_ext + "_0001.rad")
 
 def run_openradioss():
     pass
