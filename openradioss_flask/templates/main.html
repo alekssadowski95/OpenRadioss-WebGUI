@@ -2,6 +2,10 @@
 <html>
 <body>
 <h1>OpenRadioss</h1>
-<a href="{{ url_for('vtk') }}">Show vtk</a>
+<form method="POST" enctype="multipart/form-data">
+    {{ form.csrf_token }}
+    {{ form.upload }}
+    {{ form.submit }}
+</form>
 </body>
 </html>

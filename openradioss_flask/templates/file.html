@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>OpenRadioss</h1>
+<a href="{{ url_for('home') }}">Upload calculix input</a>
+<a href="{{ url_for('create_rad_input') }}">Create rad input deck</a>
+<a href="{{ url_for('create_rad_anim') }}">Create rad animation</a>
+<a href="{{ url_for('create_vtk_anim') }}">Create vtk animation</a><br>
+<a href="{{ url_for('read_calculix_input') }}">Show calculix input</a>
+<a href="{{ url_for('read_rad_input') }}">Show rad input deck</a>
+<a href="{{ url_for('read_rad_anim') }}">Show rad animation</a>
+<a href="{{ url_for('read_vtk_anim') }}">Show vtk animation</a><br><br>
+{{ content }}
+</body>
+</html>

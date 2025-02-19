@@ -2,3 +2,5 @@ Flask
 pywebview
 pyinstaller
 vtk
+Flask-WTF
+WTForms
