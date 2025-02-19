@@ -70,8 +70,16 @@ def home():
 
 @app.route("/create-rad-input")
 def create_rad_input():
-    convert_inp_to_rad(session['current_inp_path'])
-    return redirect('read_rad_input')
+    current_inp_path = session['current_inp_path']
+    current_inp_path_wo_ext = os.path.splitext(current_inp_path)[0]
+    convert_inp_to_rad(current_inp_path)
+    print(current_inp_path_wo_ext + "_0000.rad")
+    print(current_inp_path_wo_ext + "_0001.rad")
+    session['current_rad_inp_paths'] = (
+        current_inp_path_wo_ext + "_0000.rad",
+        current_inp_path_wo_ext + "_0001.rad"
+    )
+    return redirect(url_for('read_rad_input'))
 
 @app.route("/create-rad-anim")
 def create_rad_anim():
@@ -83,23 +91,45 @@ def create_vtk_anim():
 
 @app.route("/read-calculix-input")
 def read_calculix_input():
-    full_file_path = session['current_inp_path']
-    inp_file_content = "Not loaded"
-    with open(full_file_path, 'r') as file:
-        inp_file_content = file.read()
-    return render_template('file.html', content = inp_file_content)
+    content = "No calculix input"
+    print(session.get('current_inp_path'))
+    try:
+        if session.get('current_inp_path'):
+            with open(session['current_inp_path'], 'r') as file:
+                content = file.read()
+    except:
+        pass
+    return render_template('file.html', content = content)
 
 @app.route("/read-rad-input")
 def read_rad_input():
-    rad_inp_content = "No rad input deck"
-    return render_template('file.html', content = rad_inp_content)
+    content = "No rad input deck"
+    try:
+        if session.get('current_rad_inp_paths'):    
+            with open(session['current_rad_inp_paths'][0], 'r') as file:
+                content = file.read()
+            with open(session['current_rad_inp_paths'][1], 'r') as file:
+                content.append(file.read())
+    except:
+        pass
+    return render_template('file.html', content = content)
 
 @app.route("/read-rad-anim")
 def read_rad_anim():
-    rad_anim_content = "No rad animation"
-    return render_template('file.html', content = rad_anim_content)
+    content = "No rad animation"
+    try:
+        if session.get('current_rad_anim_paths'):
+            pass
+    except:
+        pass
+    return render_template('file.html', content = content)
 
 @app.route("/read-vtk-anim")
 def read_vtk_anim():
-    vtk_anim_content = "No vtk animation"
-    return render_template('file.html', content = vtk_anim_content)
+    content = "No vtk animation"
+    try:
+        if session.get('current_vtk_anim_paths'):
+            pass
+    except:
+        pass
+    return render_template('file.html', content = content)
