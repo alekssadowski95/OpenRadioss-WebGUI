@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title -->
+    <title>OpenRadioss</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-5.3.3-dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-icons-1.11.3/font/bootstrap-icons.min.css') }}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="48x48" href="{{ url_for('static', filename='ross.png') }}">
+<body>
+<h1>OpenRadioss</h1>
+<span class="btn btn-outline-secondary">{{ config['CORE_COUNT'] }} cores</span>
+<div class="btn-group" role="group" aria-label="Basic example">
+    <a class="btn btn-primary" href="{{ url_for('upload_calculix_input') }}">Upload calculix input</a>
+    <a class="btn btn-light" href="{{ url_for('read_rad_input') }}">Show rad input deck</a>
+    <a class="btn btn-light" href="{{ url_for('read_rad_log') }}">Show rad log</a>
+    <a class="btn btn-light" href="{{ url_for('read_rad_anim') }}">Show rad animation</a>
+    <a class="btn btn-light" href="{{ url_for('read_vtk_anim') }}">Show vtk animation</a>
+</div>
+<br><br>
+<form method="POST" enctype="multipart/form-data">
+    {{ form.csrf_token }}
+    {{ form.upload }}
+    {{ form.submit }}
+</form>
+<br><br>
+{{ content }}
+</body>
+</html>

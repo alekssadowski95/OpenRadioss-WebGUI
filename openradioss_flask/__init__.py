@@ -11,6 +11,8 @@ from wtforms.fields import SubmitField
 
 from .inp2rad import start as convert_inp_to_rad
 
+import psutil
+
 
 '''
 1. Upload calculix input
@@ -32,6 +34,8 @@ app.config['UPLOAD_FOLDER'] = "data"
 app.config['OPENRADIOSS_PATH'] = os.path.join(os.path.dirname(app.config['APP_PATH']), "OpenRadioss_libs")
 print(app.config['OPENRADIOSS_PATH'])
 
+app.config['CORE_COUNT'] = psutil.cpu_count(logical=False)
+
 '''
 session["current_inp_path"] = "No input file"
 session["current_rad_0001_path"] = "No rad0001 file"
@@ -47,10 +51,28 @@ class UploadForm(FlaskForm):
     upload = FileField('image', validators=[FileRequired(),])
     submit = SubmitField('Upload')
 
-@app.route("/", methods = ["GET", "POST"])
+@app.route("/")
 def home():
+    return redirect(url_for('upload_calculix_input'))
+
+@app.route("/upload-calculix-input", methods = ["GET", "POST"])
+def upload_calculix_input():
     form = UploadForm()
+    content = "No calculix input"
+    try:
+        if session.get('current_inp_path'):
+            with open(session['current_inp_path'], 'r') as file:
+                content = file.read()
+    except:
+        pass
     if form.validate_on_submit():
+        # clear session
+        session['current_inp_path'] = None
+        session['current_rad_inp_paths'] = None
+        session['current_log_paths'] = None
+        session['current_rad_anim_paths'] = None
+        session['current_vtk_anim_paths'] = None
+
         # Get the file from the form
         file = form.upload.data
 
@@ -58,29 +80,54 @@ def home():
         filename = file.filename
 
         # Save the file to the designated upload folder
-        full_file_path = os.path.join(app.config['APP_PATH'], app.config['UPLOAD_FOLDER'], filename)
-        file.save(full_file_path)
-        session['current_inp_path'] = full_file_path
+        inp_file_path = os.path.join(app.config['APP_PATH'], app.config['UPLOAD_FOLDER'], filename)
+        file.save(inp_file_path)
+        session['current_inp_path'] = inp_file_path
 
-        # Print a success message
-        print(f'File {filename} uploaded successfully!', 'success')
+        rad_inp_file_paths = create_rad_input(inp_file_path)
+        rad_anim_file_paths = run_openradioss(rad_inp_file_paths)
+        vtk_anim_paths = create_vtk_anim(rad_anim_file_paths)
         
-        return redirect(url_for('read_calculix_input'))
-    return render_template('main.html', form = form)
+        return redirect(url_for('read_result'))
+    return render_template('upload.html', form = form, content = content, onfig = app.config)
 
-@app.route("/create-rad-input")
+@app.route("/read-result")
+def read_result():
+    content = "No result"
+    return render_template('file.html', content = content, config = app.config)
+
+@app.route("/read-logs")
+def read_logs():
+    content = "No logs"
+    return render_template('file.html', content = content, config = app.config)
+
 def create_rad_input():
     current_inp_path = session['current_inp_path']
     current_inp_path_wo_ext = os.path.splitext(current_inp_path)[0]
     convert_inp_to_rad(current_inp_path)
-    print(current_inp_path_wo_ext + "_0000.rad")
-    print(current_inp_path_wo_ext + "_0001.rad")
-    session['current_rad_inp_paths'] = (
-        current_inp_path_wo_ext + "_0000.rad",
-        current_inp_path_wo_ext + "_0001.rad"
-    )
-    return redirect(url_for('read_rad_input'))
+    return (current_inp_path_wo_ext + "_0000.rad", current_inp_path_wo_ext + "_0001.rad")
 
+def run_openradioss():
+    pass
+
+def create_vtk_anim():
+    pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''
+Not now
+'''
 @app.route("/create-rad-anim")
 def create_rad_anim():
     return redirect('read_rad_anim')
@@ -89,30 +136,23 @@ def create_rad_anim():
 def create_vtk_anim():
     return redirect('read_vtk_anim')
 
-@app.route("/read-calculix-input")
-def read_calculix_input():
-    content = "No calculix input"
-    print(session.get('current_inp_path'))
-    try:
-        if session.get('current_inp_path'):
-            with open(session['current_inp_path'], 'r') as file:
-                content = file.read()
-    except:
-        pass
-    return render_template('file.html', content = content)
-
 @app.route("/read-rad-input")
 def read_rad_input():
     content = "No rad input deck"
     try:
         if session.get('current_rad_inp_paths'):    
-            with open(session['current_rad_inp_paths'][0], 'r') as file:
-                content = file.read()
-            with open(session['current_rad_inp_paths'][1], 'r') as file:
-                content.append(file.read())
+            with open(session['current_rad_inp_paths'][0], 'r') as file_0:
+                content = file_0.read()
+            with open(session['current_rad_inp_paths'][1], 'r') as file_1:
+                content = content + (file_1.read())
     except:
         pass
-    return render_template('file.html', content = content)
+    return render_template('file.html', content = content, config = app.config)
+
+@app.route("/read-rad-log")
+def read_rad_log():
+    content = "No rad log"
+    return render_template('file.html', content = content, config = app.config)
 
 @app.route("/read-rad-anim")
 def read_rad_anim():
@@ -122,7 +162,7 @@ def read_rad_anim():
             pass
     except:
         pass
-    return render_template('file.html', content = content)
+    return render_template('file.html', content = content, config = app.config)
 
 @app.route("/read-vtk-anim")
 def read_vtk_anim():
@@ -132,4 +172,4 @@ def read_vtk_anim():
             pass
     except:
         pass
-    return render_template('file.html', content = content)
+    return render_template('file.html', content = content, config = app.config)
