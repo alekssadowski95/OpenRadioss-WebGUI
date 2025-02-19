@@ -1,0 +1,5 @@
+Flask
+pywebview
+pyinstaller
+vtk
+typing-extensions==4.7.1
