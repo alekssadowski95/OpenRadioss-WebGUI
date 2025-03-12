@@ -1,7 +1,6 @@
 # OpenRadioss2
 Run FEM simulations from calculix inp files.
 
-Including:
 - OpenRadioss solver
 - 3D Viewer for simulation results
 - Runs with a GUI as a Webapp and on Desktop
