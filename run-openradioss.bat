@@ -1,0 +1,2 @@
+C:\Users\Work\Desktop\OpenRadioss\exec\starter_win64.exe -i C:\Users\Work\Desktop\or2_test\bullet_0000.rad -np 1 
+C:\Users\Work\Desktop\OpenRadioss\exec\engine_win64.exe -i C:\Users\Work\Desktop\or2_test\bullet_0001.rad  
