@@ -1,4 +1,13 @@
-# OpenRadioss
-OpenRadioss, including solver and GUI with interactive 3D View of results. Works as a Desktop application or Webapp
+# OpenRadioss2
+Run FEM simulations from calculix inp files.
 
-requires Python 3.10
+Including:
+- OpenRadioss solver
+- 3D Viewer for simulation results
+- Runs with a GUI as a Webapp and on Desktop
+- Track simulations results, while simulation is still running
+
+
+## Requirements for development environment
+Requires:
+- Python 3.10
