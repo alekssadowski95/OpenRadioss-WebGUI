@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title -->
+    <title>OpenRadioss</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-5.3.3-dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-icons-1.11.3/font/bootstrap-icons.min.css') }}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="48x48" href="{{ url_for('static', filename='ross.png') }}">
+
+    <style>
+        .viewer {
+            overflow: hidden;
+        
+            background: #11e8bb; /* Old browsers */
+            background: -moz-linear-gradient(top,  #aaa 0%,#fff 50%, #aaa 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(top,  #aaa 0%,#fff 50%,#aaa 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to bottom,  #aaa 0%,#fff 50%,#aaa 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#aaa', endColorstr='#FFF',GradientType=0 ); /* IE6-9 */
+            
+            background-color: white;
+            opacity: 1;
+            background-image: 
+                radial-gradient(rgb(235, 235, 235) 1.35px, rgb(255, 255, 255) 1.35px), 
+                radial-gradient(circle, rgba(14,32,88,1) 75%, rgba(18,32,74,1) 100%);
+            background-size: 27px 27px;
+        }
+    </style>
+<body>
+<header class="px-3 py-3 border-bottom" style="background-color: #ffffff;">
+    <div class="d-flex flex-wrap justify-content-center">
+      <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto link-body-emphasis text-decoration-none">
+        <img class="bi me-2" src="{{ url_for('static', filename='ross.png') }}" height="32"></img>
+        <span class="fs-4" style="color: black;">OpenRadioss</span>
+      </a>
+      <a type="button" href="{{ url_for('upload_calculix_input') }}" class="btn btn-outline-secondary">New</a>
+    </div>
+  </header>
+<div class="row p-0 m-0">
+    <div class="col-1 p-0 m-0" style="background-color: #ffffff; border-right-width: 1px; border-right-style: solid; border-color:lightgray;">
+        <nav class="p-0 m-0" style="margin-top: 8px;">
+            <div class="nav nav-pills p-1 m-0 flex-column" id="nav-tab" role="tablist" style="padding-left: 10px;">
+                <button class="nav-link active" id="nav-rad-anim-tab" data-bs-toggle="tab" data-bs-target="#tab-rad-anim" type="button" role="tab" aria-controls="nav-profile" aria-selected="true">Result</button>
+                <button class="nav-link " id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#tab-rad-0000" type="button" role="tab" aria-controls="nav-home" aria-selected="false">*0000.rad</button>
+                <button class="nav-link " id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#tab-rad-0001" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">*0001.rad</button>
+                <button class="nav-link " id="nav-inp-tab" data-bs-toggle="tab" data-bs-target="#tab-inp" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">*.inp</button>
+            </div>
+        </nav>
+    </div>
+        
+    <div class="col-11 p-0 m-0">
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="tab-rad-anim" role="tabpanel" aria-labelledby="nav-rad-anim-tab" tabindex="0">
+                <div class="row p-0 m-0">
+                    <div class="viewer col-10 p-0 m-0" style="background-color: black;">3D View</div>
+                    <div class="col-2 p-0 m-0" style="border-left-width: 1px; border-left-style: solid; border-color:lightgray;">
+                        <table class="table table-striped m-0">
+                            <thead class="table-light">
+                                <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">rad_anim</th>
+                                <th scope="col">vtk_anim</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for anim in anim_list %}
+                                <tr>
+                                    <td>1</td>
+                                    <td>{{ anim[0] }}</td>
+                                    <td>{{ anim[1] }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="tab-rad-0000" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="1">
+                <div style="background-color: #222222; padding-left: 20px; padding-top: 10px; color: white;">
+                    <span style="white-space: pre-line;">{{ content_0 }}</span>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="tab-rad-0001" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="2">
+                <div style="background-color: #222222; padding-left: 20px; padding-top: 10px; color: white;">
+                    <span style="white-space: pre-line;">{{ content_1 }}</span>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="tab-inp" role="tabpanel" aria-labelledby="nav-inp-tab" tabindex="3">
+                <div style="background-color: #222222; padding-left: 20px; padding-top: 10px; color: white;">
+                    <span style="white-space: pre-line;">{{ calculix_inp }}</span>
+                </div>
+            </div>
+        </div>
+
+      </div>
+      
+    </div>
+    
+
+
+<script src="{{ url_for('static', filename='bootstrap-5.3.3-dist/js/bootstrap.min.js') }}"></script>
+</body>
+</html>

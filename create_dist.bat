@@ -2,6 +2,6 @@
 
 cd %mypath%
 
-python -m PyInstaller run.py --icon "openradioss_flask/static/ross.ico" --add-data="openradioss_flask/static/bootstrap-5.3.3-dist/css/*:openradioss_flask/static/bootstrap-5.3.3-dist/css" --add-data="openradioss_flask/static/bootstrap-5.3.3-dist/js/*:openradioss_flask/static/bootstrap-5.3.3-dist/js" --add-data="openradioss_flask/templates/*:openradioss_flask/templates" --add-data="openradioss_flask/static/*:openradioss_flask/static" --add-data="openradioss_flask/data/*:openradioss_flask/data" --add-data="LICENSE:." --splash openradioss_flask/static/openradioss-splash.jpg --noconfirm
+python -m PyInstaller run.py --icon "flask_app/static/ross.ico" --add-data="flask_app/static/bootstrap-5.3.3-dist/css/*:flask_app/static/bootstrap-5.3.3-dist/css" --add-data="flask_app/static/bootstrap-5.3.3-dist/js/*:flask_app/static/bootstrap-5.3.3-dist/js" --add-data="flask_app/templates/*:flask_app/templates" --add-data="flask_app/static/*:flask_app/static" --add-data="flask_app/data/*:flask_app/data" --add-data="LICENSE:." --splash flask_app/static/openradioss-splash.jpg --noconfirm
 
 @Pause
