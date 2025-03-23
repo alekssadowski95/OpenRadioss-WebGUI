@@ -14,6 +14,12 @@ from .inp2rad import start as convert_inp_to_rad
 import psutil
 import threading
 
+from watchdog.observers import Observer
+from watchdog.events import FileSystemEventHandler
+
+import re
+from typing import List, Tuple
+
 
 paths_to_data = {
     "inp": None,
@@ -60,6 +66,9 @@ def upload_calculix_input():
     except:
         pass
     if form.validate_on_submit():
+        # remove old simulation data
+        remove_all_files_in_directory(os.path.join(app.config['APP_PATH'], 'data'))
+
         # clear data
         paths_to_data["inp"] = None
         paths_to_data["rad0000"] = None
@@ -79,7 +88,9 @@ def upload_calculix_input():
         paths_to_data["rad0000"] = current_inp_path_wo_ext + "_0000.rad"
         paths_to_data["rad0001"] = current_inp_path_wo_ext + "_0001.rad"
 
-        threading.Thread(target = process_calculix_inp, args = (inp_file_path, )).start()
+        observer_thread = threading.Thread(target = start_observer).start()
+        threading.Thread(target = process_calculix_inp, args = (inp_file_path, observer_thread, )).start()
+
 
         return redirect(url_for('read_result'))
     return render_template('upload.html', form = form, content = content, onfig = app.config)
@@ -114,10 +125,6 @@ def run_openradioss():
     openradioss_path = os.path.join(os.path.dirname(app.config['APP_PATH']), 'OpenRadioss_libs')
     os.system("C:/Users/Work/Documents/Github/OpenRadioss2/run-openradioss.bat" + " " + working_dir + " " + openradioss_path + " " + "bullet")
 
-import os
-import re
-from typing import List, Tuple
-
 def list_filenames(directory: str) -> List[Tuple[str, str]]:
     """
     Returns a list of filenames that end with three numeric characters and have no file extension,
@@ -141,25 +148,61 @@ def list_filenames(directory: str) -> List[Tuple[str, str]]:
         print(f"Error: Permission denied for accessing '{directory}'.")
         return []
 
-def create_vtk_anim():
-    pass
-
-def process_calculix_inp(inp_path):
+def process_calculix_inp(inp_path, observer_thread):    
     convert_inp_to_rad(inp_path)
     run_openradioss()
-    create_vtk_anim()
+    observer_thread.join()
 
 @app.route("/get-result-list")
 def get_result_list():
     anim_list = list_filenames(os.path.join(app.config['APP_PATH'], 'data'))
     return jsonify(anim_list)
 
-
 @app.route("/get-single-result/<anim_name>")
 def get_single_result(anim_name):
     uploads = os.path.join(app.config['APP_PATH'], 'data')
     return send_from_directory(uploads, anim_name)
 
+class MyHandler(FileSystemEventHandler):
+    threads = [] 
+    def on_created(self, event):
+        # Check if the event is a file (not a directory)
+        if event.is_directory:
+            return 
+        # Print the filename when a new file is created
+        print(f'New file created: {os.path.basename(event.src_path)}')
+        
+        if is_rad_anim_filename(os.path.basename(event.src_path)) and not os.path.basename(event.src_path).endswith("A001"):
+            self.threads.append(threading.Thread(target = create_vtk_anim, args = (event.src_path, )).start())
+
+def create_vtk_anim(rad_anim_path):
+    os.system(os.path.join(app.config['OPENRADIOSS_PATH'], 'exec', 'anim_to_vtk_win64.exe') + " " + rad_anim_path + " > " + os.path.basename(rad_anim_path) + ".vtk")
+    print('Created file: ' + os.path.basename(rad_anim_path) + ".vtk")
+
+def start_observer():
+    observer = Observer()
+    my_handler = MyHandler()
+    observer.schedule(my_handler, path=os.path.join(app.config['APP_PATH'], 'data'), recursive=False)
+    observer.start()
+    for thread in my_handler.threads:
+        thread.join()
+
+def is_rad_anim_filename(s: str) -> bool:
+    # Regular expression to check if the string ends with 'A' followed by 3 digits
+    pattern = r"A\d{3}$"
+    
+    # Check if the string matches the pattern
+    return bool(re.search(pattern, s))
+
+def remove_all_files_in_directory(directory: str):
+    # Iterate over all the files in the directory
+    for filename in os.listdir(directory):
+        file_path = os.path.join(directory, filename)
+        
+        # Check if it is a file and not a directory
+        if os.path.isfile(file_path):
+            os.remove(file_path)  # Remove the file
+            print(f'Removed file: {file_path}')
 
 
 
@@ -169,19 +212,6 @@ def get_single_result(anim_name):
 
 
 
-
-
-
-'''
-Not now
-'''
-@app.route("/create-rad-anim")
-def create_rad_anim():
-    return redirect('read_rad_anim')
-
-@app.route("/create-vtk-anim")
-def create_vtk_anim():
-    return redirect('read_vtk_anim')
 
 @app.route("/read-rad-input")
 def read_rad_input():
