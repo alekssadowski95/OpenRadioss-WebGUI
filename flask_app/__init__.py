@@ -177,6 +177,13 @@ class MyHandler(FileSystemEventHandler):
         print(f'New file created: {os.path.basename(event.src_path)}')
         
         if is_rad_anim_filename(os.path.basename(event.src_path)) and not os.path.basename(event.src_path).endswith("A001"):
+            # 1. Get current number
+
+            # 2. Subtract 1 from current number
+
+            # 3. Concatenate new path string
+
+            # start thread
             threading.Thread(target = create_vtk_anim, args = (event.src_path, )).start()
 
 def create_vtk_anim(rad_anim_path):

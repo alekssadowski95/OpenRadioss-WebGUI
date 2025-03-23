@@ -39,7 +39,7 @@
         <img class="bi me-2" src="{{ url_for('static', filename='ross.png') }}" height="28"></img>
         <span class="fs-5" style="color: black;">OpenRadioss</span>
     </a>
-    <a type="button" href="{{ url_for('upload_calculix_input') }}" class="btn btn-outline-success">New</a>
+    <a type="button" href="{{ url_for('upload_calculix_input') }}" class="btn btn-outline-secondary">New</a>
     </div>
 </header>
 <div class="row p-0 m-0" style="height:calc(100% - 55px)">    
@@ -61,12 +61,12 @@
                     <span style="white-space: pre-line; ">{{ content_0 }}</span>
                 </div>
             </div>
-            <div class="tab-pane fade" id="tab-rad-0001" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="2">
+            <div class="tab-pane fade" id="tab-rad-0001" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="2" style="height: calc(100% - 42px);">
                 <div style="background-color: #222222; padding-left: 20px; padding-top: 10px; color: white; height: 100%; overflow-y: scroll;">
                     <span style="white-space: pre-line;">{{ content_1 }}</span>
                 </div>
             </div>
-            <div class="tab-pane fade" id="tab-inp" role="tabpanel" aria-labelledby="nav-inp-tab" tabindex="3">
+            <div class="tab-pane fade" id="tab-inp" role="tabpanel" aria-labelledby="nav-inp-tab" tabindex="3" style="height: calc(100% - 42px);">
                 <div style="background-color: #222222; padding-left: 20px; padding-top: 10px; color: white; height: 100%; overflow-y: scroll;">
                     <span style="white-space: pre-line;">{{ calculix_inp }}</span>
                 </div>
