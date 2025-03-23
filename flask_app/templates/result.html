@@ -16,6 +16,8 @@
 
     <style>
         .viewer {
+            height: 100%;
+            width: 100%;
             overflow: hidden;
         
             background: #11e8bb; /* Old browsers */
@@ -39,26 +41,26 @@
         <img class="bi me-2" src="{{ url_for('static', filename='ross.png') }}" height="32"></img>
         <span class="fs-4" style="color: black;">OpenRadioss</span>
       </a>
-      <a type="button" href="{{ url_for('upload_calculix_input') }}" class="btn btn-outline-secondary">New</a>
+      <a type="button" href="{{ url_for('upload_calculix_input') }}" class="btn btn-outline-success">New</a>
     </div>
   </header>
-<div class="row p-0 m-0">
-    <div class="col-1 pt-1 p-0 m-0" style="background-color: #ffffff; border-right-width: 1px; border-right-style: solid; border-color:lightgray;">
-        <nav class="p-0 m-0" style="margin-top: 8px;">
-            <div class="nav nav-pills p-1 m-0 flex-column" id="nav-tab" role="tablist" style="padding-left: 10px;">
-                <button class="text-start nav-link active" id="nav-rad-anim-tab" data-bs-toggle="tab" data-bs-target="#tab-rad-anim" type="button" role="tab" aria-controls="nav-profile" aria-selected="true">Result</button>
-                <button class="text-start nav-link " id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#tab-rad-0000" type="button" role="tab" aria-controls="nav-home" aria-selected="false">*0000.rad</button>
-                <button class="text-start nav-link " id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#tab-rad-0001" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">*0001.rad</button>
-                <button class="text-start nav-link " id="nav-inp-tab" data-bs-toggle="tab" data-bs-target="#tab-inp" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">*.inp</button>
-            </div>
-        </nav>
-    </div>
-        
-    <div class="col-11 p-0 m-0">
+<div class="row p-0 m-0">        
+    <div class="col-12 p-0 m-0">
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="tab-rad-anim" role="tabpanel" aria-labelledby="nav-rad-anim-tab" tabindex="0">
                 <div class="row p-0 m-0">
-                    <div class="viewer col-10 p-0 m-0" style="background-color: black;"></div>
+                    <div class="col-10 p-0 m-0">
+                        <nav class="p-0 m-0" style="margin-top: 8px;">
+                            <div class="nav nav-tabs p-1 m-0 flex" id="nav-tab" role="tablist" style="padding-left: 10px;">
+                                <button class="text-start nav-link active" id="nav-rad-anim-tab" data-bs-toggle="tab" data-bs-target="#tab-rad-anim" type="button" role="tab" aria-controls="nav-profile" aria-selected="true" style="color: black;">Result</button>
+                                <button class="text-start nav-link " id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#tab-rad-0000" type="button" role="tab" aria-controls="nav-home" aria-selected="false" style="color: black;">*0000.rad</button>
+                                <button class="text-start nav-link " id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#tab-rad-0001" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" style="color: black;">*0001.rad</button>
+                                <button class="text-start nav-link " id="nav-inp-tab" data-bs-toggle="tab" data-bs-target="#tab-inp" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" style="color: black;">*.inp</button>
+                            </div>
+                        </nav>
+                        <!-- Viewer -->
+                        <div class="viewer p-0 m-0"></div>
+                    </div>
                     <div class="col-2 p-0 m-0" style="border-left-width: 1px; border-left-style: solid; border-color:lightgray;">
                         <table class="table table-striped m-0">
                             <thead class="">
@@ -68,33 +70,14 @@
                                 <th scope="col"></th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                {% for anim in anim_list %}
-                                <tr>
-                                    <td>1</td>
-                                    {% if (anim[0] == None) and (anim[1] == None) %}
-                                        <td class="text-secondary">Processing...</td>
-                                        <td></td>
-                                    {% elif (anim[0] != None) and (anim[1] == None) %}
-                                        <td class="text-secondary">Processing...</td>
-                                        <td></td>
-                                    {% elif (anim[0] != None) and (anim[1] != None) %}
-                                        <td class="text-success">Finished</td>
-                                        <td class="p-2">
-                                            <a class="btn btn-outline-secondary" type="button" href="#" style="font-size: 12px; padding-left: 6px; padding-right: 6px; padding-top: 4px; padding-bottom: 4px;">View</a>
-                                        </td>
-                                    {% endif %}
-                                    
-                                </tr>
-                                {% endfor %}
-                            </tbody>
+                            <tbody id="resultsList"></tbody>
                         </table>
                     </div>
                 </div>
             </div>
             <div class="tab-pane fade" id="tab-rad-0000" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="1">
                 <div style="background-color: #222222; padding-left: 20px; padding-top: 10px; color: white;">
-                    <span style="white-space: pre-line;">{{ content_0 }}</span>
+                    <span style="white-space: pre-line; ">{{ content_0 }}</span>
                 </div>
             </div>
             <div class="tab-pane fade" id="tab-rad-0001" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="2">
@@ -116,5 +99,47 @@
 
 
 <script src="{{ url_for('static', filename='bootstrap-5.3.3-dist/js/bootstrap.min.js') }}"></script>
+<script>
+    function updateDiv(divId, newText) {
+        // Get the div element by ID
+        var div = document.getElementById(divId);
+
+        /*
+        for (let i = 0; i < newText.length; i++) {
+            console.log(newText[i]);
+        }
+        */ 
+
+        // Check if the div exists
+        if (div) {
+            // Update the content of the div
+            resultListTemp = JSON.parse(newText);
+            resultListHTML = '';
+            for (let i = 0; i < resultListTemp.length; i++) {
+                currentURL = 
+                resultListHTML = resultListHTML + "<tr>" + "<td>" + resultListTemp[i][0] + "</td>" + "<td>" + resultListTemp[i][1] + "</td>" + "<td class='p-2'><a class='btn btn-outline-secondary' type='button' href='http://localhost:5000/get-single-result/" + resultListTemp[i][1] + "' style='font-size: 12px; padding-left: 6px; padding-right: 6px; padding-top: 4px; padding-bottom: 4px;''>Download</a></td>" + "</tr>"
+            }
+            div.innerHTML = resultListHTML;
+            console.log("Updated results list")
+        } else {
+            console.error("Div with ID '" + divId + "' not found.");
+        }
+    }
+
+    // Function to fetch data from localhost:5000 and update the div
+    type = 0;
+    function autoUpdateDiv(divId) {
+        setInterval(function() {
+            fetch('http://localhost:5000/get-result-list')
+                .then(response => response.text()) // Assuming the response is plain text
+                .then(data => {
+                    updateDiv(divId, data);
+                })
+                .catch(error => console.error("Error fetching data:", error));
+        }, 1000);
+    }
+
+    autoUpdateDiv("resultsList");
+</script>
 </body>
 </html>

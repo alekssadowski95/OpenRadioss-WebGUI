@@ -1,7 +1,7 @@
 import os
 
 from flask import Flask
-from flask import render_template, redirect, url_for, session
+from flask import render_template, redirect, url_for, session, jsonify, send_from_directory
 
 from werkzeug.utils import secure_filename
 
@@ -20,26 +20,7 @@ paths_to_data = {
     "rad0000": None,
     "rad0001": None,
     "anim_list": [
-        ("test1", "test1.vtk"),
-        ("test2", "test2.vtk"),
-        ("test3", "test3.vtk"),
-        ("test4", None),
-        ("test5", None),
-        (None, None),
-        (None, None),
-        (None, None),
-        (None, None),
-        (None, None),
-        (None, None),
-        (None, None),
-        (None, None),
-        (None, None),
-        (None, None),
-        (None, None),
-        (None, None),
-        (None, None),
-        (None, None),
-        (None, None),
+        (1, "test", "test.vtk")
     ]
 }
 
@@ -119,6 +100,7 @@ def read_result():
                 calculix_inp = file_2.read()
     except:
         pass
+    paths_to_data["anim_list"] = list_filenames(os.path.join(app.config['APP_PATH'], 'data'))
     return render_template('result.html', content_0 = content_0, content_1 = content_1, calculix_inp = calculix_inp, anim_list = paths_to_data["anim_list"], config = app.config)
 
 @app.route("/read-logs")
@@ -127,7 +109,37 @@ def read_logs():
     return render_template('file.html', content = content, config = app.config)
 
 def run_openradioss():
-    pass
+    working_dir = os.path.join(app.config['APP_PATH'], 'data')
+    os.chdir(working_dir)
+    openradioss_path = os.path.join(os.path.dirname(app.config['APP_PATH']), 'OpenRadioss_libs')
+    os.system("C:/Users/Work/Documents/Github/OpenRadioss2/run-openradioss.bat" + " " + working_dir + " " + openradioss_path + " " + "bullet")
+
+import os
+import re
+from typing import List, Tuple
+
+def list_filenames(directory: str) -> List[Tuple[str, str]]:
+    """
+    Returns a list of filenames that end with three numeric characters and have no file extension,
+    along with the extracted number.
+
+    :param directory: Path to the directory.
+    :return: List of tuples (extracted number, filename) in the directory.
+    """
+    try:
+        result = []
+        for f in os.listdir(directory):
+            if os.path.isfile(os.path.join(directory, f)) and '.' not in f:
+                match = re.search(r'\d{3}$', f)
+                if match:
+                    result.append((match.group(0), f))
+        return result
+    except FileNotFoundError:
+        print(f"Error: Directory '{directory}' not found.")
+        return []
+    except PermissionError:
+        print(f"Error: Permission denied for accessing '{directory}'.")
+        return []
 
 def create_vtk_anim():
     pass
@@ -137,6 +149,16 @@ def process_calculix_inp(inp_path):
     run_openradioss()
     create_vtk_anim()
 
+@app.route("/get-result-list")
+def get_result_list():
+    anim_list = list_filenames(os.path.join(app.config['APP_PATH'], 'data'))
+    return jsonify(anim_list)
+
+
+@app.route("/get-single-result/<anim_name>")
+def get_single_result(anim_name):
+    uploads = os.path.join(app.config['APP_PATH'], 'data')
+    return send_from_directory(uploads, anim_name)
 
 
 
