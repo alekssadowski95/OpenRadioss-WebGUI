@@ -136,10 +136,15 @@ def list_filenames(directory: str) -> List[Tuple[str, str]]:
     try:
         result = []
         for f in os.listdir(directory):
+            if os.path.isfile(os.path.join(directory, f)):
+                if f.endswith('.vtk'):
+                    result.append((1, f))
+                    """
             if os.path.isfile(os.path.join(directory, f)) and '.' not in f:
                 match = re.search(r'\d{3}$', f)
                 if match:
-                    result.append((match.group(0), f))
+                    result.append((match.group(0), f))"
+                    """
         return result
     except FileNotFoundError:
         print(f"Error: Directory '{directory}' not found.")
@@ -164,7 +169,6 @@ def get_single_result(anim_name):
     return send_from_directory(uploads, anim_name)
 
 class MyHandler(FileSystemEventHandler):
-    threads = [] 
     def on_created(self, event):
         # Check if the event is a file (not a directory)
         if event.is_directory:
@@ -173,10 +177,12 @@ class MyHandler(FileSystemEventHandler):
         print(f'New file created: {os.path.basename(event.src_path)}')
         
         if is_rad_anim_filename(os.path.basename(event.src_path)) and not os.path.basename(event.src_path).endswith("A001"):
-            self.threads.append(threading.Thread(target = create_vtk_anim, args = (event.src_path, )).start())
+            threading.Thread(target = create_vtk_anim, args = (event.src_path, )).start()
 
 def create_vtk_anim(rad_anim_path):
-    os.system(os.path.join(app.config['OPENRADIOSS_PATH'], 'exec', 'anim_to_vtk_win64.exe') + " " + rad_anim_path + " > " + os.path.basename(rad_anim_path) + ".vtk")
+    import subprocess
+    print(str(os.path.join(app.config['OPENRADIOSS_PATH'], 'exec', 'anim_to_vtk_win64.exe') + " " + rad_anim_path + " > " + os.path.basename(rad_anim_path) + ".vtk"))
+    subprocess.call(str(os.path.join(app.config['OPENRADIOSS_PATH'], 'exec', 'anim_to_vtk_win64.exe') + " " + rad_anim_path + " > " + os.path.basename(rad_anim_path) + ".vtk"), stdout=subprocess.PIPE, shell=True)
     print('Created file: ' + os.path.basename(rad_anim_path) + ".vtk")
 
 def start_observer():
@@ -184,8 +190,6 @@ def start_observer():
     my_handler = MyHandler()
     observer.schedule(my_handler, path=os.path.join(app.config['APP_PATH'], 'data'), recursive=False)
     observer.start()
-    for thread in my_handler.threads:
-        thread.join()
 
 def is_rad_anim_filename(s: str) -> bool:
     # Regular expression to check if the string ends with 'A' followed by 3 digits
