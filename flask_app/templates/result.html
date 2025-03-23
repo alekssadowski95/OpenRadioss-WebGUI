@@ -43,7 +43,7 @@
     </div>
   </header>
 <div class="row p-0 m-0">
-    <div class="col-1 p-0 m-0" style="background-color: #ffffff; border-right-width: 1px; border-right-style: solid; border-color:lightgray;">
+    <div class="col-1 pt-1 p-0 m-0" style="background-color: #ffffff; border-right-width: 1px; border-right-style: solid; border-color:lightgray;">
         <nav class="p-0 m-0" style="margin-top: 8px;">
             <div class="nav nav-pills p-1 m-0 flex-column" id="nav-tab" role="tablist" style="padding-left: 10px;">
                 <button class="text-start nav-link active" id="nav-rad-anim-tab" data-bs-toggle="tab" data-bs-target="#tab-rad-anim" type="button" role="tab" aria-controls="nav-profile" aria-selected="true">Result</button>
@@ -80,7 +80,9 @@
                                         <td></td>
                                     {% elif (anim[0] != None) and (anim[1] != None) %}
                                         <td class="text-success">Finished</td>
-                                        <td class="p-2"><a class="btn btn-outline-secondary" type="button" href="#" style="font-size: 12px; padding-left: 6px; padding-right: 6px; padding-top: 4px; padding-bottom: 4px;">View</a></td>
+                                        <td class="p-2">
+                                            <a class="btn btn-outline-secondary" type="button" href="#" style="font-size: 12px; padding-left: 6px; padding-right: 6px; padding-top: 4px; padding-bottom: 4px;">View</a>
+                                        </td>
                                     {% endif %}
                                     
                                 </tr>
