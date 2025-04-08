@@ -32,8 +32,6 @@ paths_to_data = {
     ]
 }
 
-session['prcessing_thread'] = 0
-
 app = Flask(__name__)
 
 CORS(app)
@@ -85,8 +83,6 @@ def upload_calculix_input():
     except:
         pass
     if form.validate_on_submit():
-        session['prcessing_thread'].join()
-
         # remove old simulation data
         remove_all_files_in_directory(os.path.join(app.config['APP_PATH'], 'data'))
 
@@ -110,7 +106,7 @@ def upload_calculix_input():
         paths_to_data["rad0001"] = current_inp_path_wo_ext + "_0001.rad"
 
         observer_thread = threading.Thread(target = start_observer).start()
-        session['prcessing_thread'] = threading.Thread(target = process_calculix_inp, args = (inp_file_path, observer_thread, )).start()
+        processing_thread = threading.Thread(target = process_calculix_inp, args = (inp_file_path, observer_thread, )).start()
 
 
         return redirect(url_for('read_result'))
