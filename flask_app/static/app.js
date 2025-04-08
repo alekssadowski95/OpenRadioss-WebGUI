@@ -336,17 +336,17 @@ loader.load(
 			if (k == segments){
 				trTemp.innerHTML = `<td style="background-color: #${gradient[k-1].toString(16).padStart(6, '0')}; height: 20px; width: 30px; border-style: solid; border-width: 1px; border-color:#222222;"></td>
 				<td style="width: 10px; border-top: 1px solid #000000; border-bottom: 1px solid #000000"></td>
-				<td style="position: relative; padding-left: 6px; width: 120px;"><span style="position: absolute; top: -10px;">${misesMax.toPrecision(8)} Max</span></td>`;
+				<td style="position: relative; padding-left: 6px; width: 145px;"><span style="position: absolute; top: -10px;">${misesMax.toExponential(6)}&nbsp;&nbsp;Max</span></td>`;
 			} else {
 				trTemp.innerHTML = `<td style="background-color: #${gradient[k-1].toString(16).padStart(6, '0')}; height: 20px; width: 30px; border-style: solid; border-width: 1px; border-color:#222222;"></td>
 				<td style="width: 10px; border-top: 1px solid #000000; border-bottom: 1px solid #000000"></td>
-				<td style="position: relative; padding-left: 6px; width: 120px;"><span style="position: absolute; top: -10px;">${(k * misesIntervall + misesMin).toPrecision(8)}</span></td>`;
+				<td style="position: relative; padding-left: 6px; width: 145px;"><span style="position: absolute; top: -10px;">${(k * misesIntervall + misesMin).toExponential(6)}</span></td>`;
 			}
 		}
 		var trMin = viewerLegend.appendChild(document.createElement("tr"));
 		trMin.innerHTML = `<td style="height: 20px; width: 30px;"></td>
 				<td style="width: 10px;"></td>
-				<td style="position: relative; padding-left: 6px; width: 120px;"><span style="position: absolute; top: -10px;">${misesMin.toPrecision(8)} Min</span></td>`;
+				<td style="position: relative; padding-left: 6px; width: 145px;"><span style="position: absolute; top: -10px;">${misesMin.toExponential(6)}&nbsp;&nbsp;Min</span></td>`;
 	},
 
 	// onProgress callback

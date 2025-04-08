@@ -70,9 +70,11 @@ def data(filename):
 
 @app.route('/viewer/<filename>')
 def viewer(filename):
-    print('helpp')
-    print(filename)
     return render_template('viewer.html', filename = filename)
+
+@app.errorhandler(404)
+def not_found(e):
+  return render_template('404_errorpage.html'), 404
 
 @app.route("/upload-calculix-input", methods = ["GET", "POST"])
 def upload_calculix_input():
