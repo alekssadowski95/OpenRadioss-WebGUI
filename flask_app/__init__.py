@@ -1,7 +1,9 @@
 import os
 
 from flask import Flask
-from flask import render_template, redirect, url_for, session, jsonify, send_from_directory
+from flask import render_template, redirect, url_for, session, jsonify, send_from_directory, send_file
+
+from flask_cors import CORS
 
 from werkzeug.utils import secure_filename
 
@@ -32,6 +34,8 @@ paths_to_data = {
 
 app = Flask(__name__)
 
+CORS(app)
+
 # Define the path for the app
 app.config['APP_PATH'] = os.path.dirname(os.path.abspath(__file__))
 print(app.config['APP_PATH'])
@@ -54,6 +58,21 @@ class UploadForm(FlaskForm):
 @app.route("/")
 def home():
     return redirect(url_for('upload_calculix_input'))
+
+@app.route('/new-result/')
+def new_result():
+    return render_template('viewer.html', model_url = url_for('static', filename='model.stl'))
+
+@app.route("/data/<filename>")
+def data(filename):
+    filepath = os.path.join(app.config['APP_PATH'], app.config['UPLOAD_FOLDER'], filename)
+    return send_file(filepath)
+
+@app.route('/viewer/<filename>')
+def viewer(filename):
+    print('helpp')
+    print(filename)
+    return render_template('viewer.html', filename = filename)
 
 @app.route("/upload-calculix-input", methods = ["GET", "POST"])
 def upload_calculix_input():
@@ -177,14 +196,22 @@ class MyHandler(FileSystemEventHandler):
         print(f'New file created: {os.path.basename(event.src_path)}')
         
         if is_rad_anim_filename(os.path.basename(event.src_path)) and not os.path.basename(event.src_path).endswith("A001"):
-            # 1. Get current number
+            # Extract directory and filename
+            dir_name, base_name = os.path.split(str(event.src_path))
+            
+            # Regex to match the pattern (e.g., 'bulletA002')
+            match = re.search(r'(.*?)(\d+)$', base_name)
+            if not match:
+                raise ValueError("Filename does not match the expected pattern")
+            
+            prefix, num_part = match.groups()
+            new_num = str(int(num_part) - 1).zfill(len(num_part))  # Preserve leading zeros
+            new_filename = f"{prefix}{new_num}"
 
-            # 2. Subtract 1 from current number
-
-            # 3. Concatenate new path string
+            new_filepath = os.path.join(dir_name, new_filename)
 
             # start thread
-            threading.Thread(target = create_vtk_anim, args = (event.src_path, )).start()
+            threading.Thread(target = create_vtk_anim, args = (new_filepath, )).start()
 
 def create_vtk_anim(rad_anim_path):
     import subprocess
