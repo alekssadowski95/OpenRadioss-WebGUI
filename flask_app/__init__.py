@@ -1,7 +1,7 @@
 import os
 
 from flask import Flask
-from flask import render_template, redirect, url_for, session, jsonify, send_from_directory, send_file
+from flask import render_template, redirect, url_for, session, jsonify, send_from_directory, send_file, session
 
 from flask_cors import CORS
 
@@ -32,6 +32,8 @@ paths_to_data = {
     ]
 }
 
+session['prcessing_thread'] = 0
+
 app = Flask(__name__)
 
 CORS(app)
@@ -59,10 +61,6 @@ class UploadForm(FlaskForm):
 def home():
     return redirect(url_for('upload_calculix_input'))
 
-@app.route('/new-result/')
-def new_result():
-    return render_template('viewer.html', model_url = url_for('static', filename='model.stl'))
-
 @app.route("/data/<filename>")
 def data(filename):
     filepath = os.path.join(app.config['APP_PATH'], app.config['UPLOAD_FOLDER'], filename)
@@ -87,6 +85,8 @@ def upload_calculix_input():
     except:
         pass
     if form.validate_on_submit():
+        session['prcessing_thread'].join()
+
         # remove old simulation data
         remove_all_files_in_directory(os.path.join(app.config['APP_PATH'], 'data'))
 
@@ -110,7 +110,7 @@ def upload_calculix_input():
         paths_to_data["rad0001"] = current_inp_path_wo_ext + "_0001.rad"
 
         observer_thread = threading.Thread(target = start_observer).start()
-        threading.Thread(target = process_calculix_inp, args = (inp_file_path, observer_thread, )).start()
+        session['prcessing_thread'] = threading.Thread(target = process_calculix_inp, args = (inp_file_path, observer_thread, )).start()
 
 
         return redirect(url_for('read_result'))
