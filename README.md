@@ -41,20 +41,25 @@ Applications of simulations performed using this software, specifically featurin
 ## Fully open-source workflow for crash simulations
 The OpenRadioss-WebGUI simplifies the open-source workflow for crash simulations, that we have developed and validated by combining OpenRadioss with a Post-processing solution, reducing the number of software packages(FreeCAD + PrePoMax + OpenRadioss + ParaView) -> (FreeCAD + PrePoMax + OpenRadioss-WebGUI).
 ![Fully_open-source_workflow_for_crash_simulations](Fully_open-source_workflow_for_crash_simulations.png)
-
-
 *Figure 5: Previous workflow overview comprised of FreeCAD, PrePoMax, OpenRadioss and ParaView*
+
+
 ![Fully_open-source_workflow_for_crash_simulations-diagram](Fully_open-source_workflow_for_crash_simulations-diagram.png)
-
-
 *Figure 6: Block diagram of the previous workflow, including the interfaces and steps*
+
+
 ![carhs-automotive-cae-grand-challenge-2025-aleksander-sadowski-open-source](carhs-automotive-cae-grand-challenge-2025-aleksander-sadowski-open-source.jpg)
 *Figure 7: Presenting the fully open-source workflow for crash simulations in automotive and aerospace at Carhs aCAE Grand Challenge 2025 in Hanau (https://www.carhs.de/en/grand-challenge-overview.html) to leaders in automotive engineering, including representatives from BMW AG, Volkswagen AG and Dassault Systemes. Credit: Natalie Golowko*
+
+
+![openradioss-users-day-2025-alsado](openradioss-users-day-2025-alsado.png)
+*Figure 8: Presenting fully open-source workflow for crash simulations in automotive at OpenRadioss Users' day 2025*
+
 
 ## Development of GUI 2.0
 To make it even easier to get started, the GUI will be further simplified, while offering more information.
 ![new-ui-element-for-simulations-results](new-ui-element-for-simulations-results.jpeg)
-*Figure 8: Hand drawing of a new user interface concept for the OpenRadioss-WebGUI with inspiration from a film reel*
+*Figure 9: Hand drawing of a new user interface concept for the OpenRadioss-WebGUI with inspiration from a film reel*
 
 ## Requirements for development environment
 Requires:
