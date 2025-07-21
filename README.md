@@ -1,6 +1,9 @@
 # OpenRadioss-WebGUI
 Run and visualize dynamic FEM simulations from Abaqus/ Calculix *.inp files with the explicit open-source OpenRadioss solver.
 
+![openradioss gui](openradioss-2.png)
+
+## Overview
 Quickly get started with OpenRadioss and open-source dynamic simulations. The OpenRadioss-WebGUI combines :
 - OpenRadioss solver
 - 3D WebWiewer VTK for unstructured meshes (based on three.js)
@@ -10,9 +13,7 @@ Quickly get started with OpenRadioss and open-source dynamic simulations. The Op
 - Immediate results, while simulation is still running
 - Compatible with a fully open-source workflow (FreeCAD + PrePoMax + OpenRadioss)
 - Multi-core support out of the box (MPI)
-
-![openradioss gui](openradioss-2.png)
-
+  
 ## Getting started
 1. Create CAD geometry in FreeCAD
 2. Pre-Processing with PrePoMax
