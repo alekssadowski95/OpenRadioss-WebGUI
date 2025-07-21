@@ -10,7 +10,7 @@ Quickly get started with OpenRadioss and open-source dynamic simulations. The Op
 - 3D WebWiewer VTK for unstructured meshes (based on three.js)
 - Web-framework based on Flask (Webapp)
 - Desktop-app deployment 
-- Integrated EV platform crash simulation example for teaching students
+- Integrated dynamic, explicit simulation examples for teaching students
 - Immediate results, while simulation is still running
 - Compatible with a fully open-source workflow (FreeCAD + PrePoMax + OpenRadioss)
 - Multi-core support out of the box (MPI)
