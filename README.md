@@ -57,13 +57,18 @@ The OpenRadioss-WebGUI simplifies the open-source workflow for crash simulations
 
 
 ![mars-rover-tag-der-raumfahrt-2025-deutsche-raumfahrtagantur-aleksander-sadowski-altair](mars-rover-tag-der-raumfahrt-2025-deutsche-raumfahrtagantur-aleksander-sadowski-altair.png)
-*Figure 9: Presenting the fully open-source workflow as a mars rover drop-off simulation workshop at "Tag der Reaumfahrt 2025" from Deutsche Raumfahrtagantur im DLR (German space agency) organized by Alsado and Altair at Altairs' office in cologne*
+*Figure 9: Presenting the fully open-source workflow as a mars rover drop-off simulation workshop at "Tag der Reaumfahrt 2025" from Deutsche Raumfahrtagantur im DLR (German space agency at DLR) organized by Alsado and Altair at Altairs' office in cologne*
+
+
+![alsado-german-space-actors-openradioss](alsado-german-space-actors-openradioss.png)
+*Figure 10: Offering OpenRadioss as an open-source simulation tool in aerospace through the catalogue of German space actors by the German space agency at DLR*
+
 
 
 ## Development of GUI 2.0
 To make it even easier to get started, the GUI will be further simplified, while offering more information.
 ![new-ui-element-for-simulations-results](new-ui-element-for-simulations-results.jpeg)
-*Figure 10: Hand drawing of a new user interface concept for the OpenRadioss-WebGUI with inspiration from a film reel*
+*Figure 11: Hand drawing of a new user interface concept for the OpenRadioss-WebGUI with inspiration from a film reel*
 
 ## Requirements for development environment
 Requires:
