@@ -68,4 +68,5 @@ Requires:
 - FreeCAD: https://github.com/FreeCAD/FreeCAD
 - PrePoMax: https://gitlab.com/MatejB/PrePoMax
 - Carhs aCAE Grand Challenge 2025: https://www.carhs.de/en/grand-challenge-overview.html
+- Altair (R) Radioss (R): https://altair.com/radioss
 
