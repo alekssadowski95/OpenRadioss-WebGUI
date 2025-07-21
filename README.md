@@ -70,6 +70,7 @@ To make it even easier to get started, the GUI will be further simplified, while
 - New results browser bar
 - Move reports from tabs to buttons and modal dialog
 - Make navigation transparent for more real-estate
+- Remove file-upload page and move it to a modal dialog, overlaying the results page
   
 ![new-ui-element-for-simulations-results](new-ui-element-for-simulations-results.jpeg)
 *Figure 11: Hand drawing of a new user interface concept for the OpenRadioss-WebGUI with inspiration from a film reel*
