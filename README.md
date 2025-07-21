@@ -44,7 +44,7 @@ The OpenRadioss-WebGUI simplifies the open-source workflow for crash simulations
 *Figure 5: Previous workflow overview comprised of FreeCAD, PrePoMax, OpenRadioss and ParaView*
 ![Fully_open-source_workflow_for_crash_simulations-diagram](Fully_open-source_workflow_for_crash_simulations-diagram.png)
 *Figure 6: Block diagram of the previous workflow, including the interfaces and steps*
-![carhs-automotive-cae-grand-challenge-2025-aleksander-sadowski-open-source](carhs-automotive-cae-grand-challenge-2025-aleksander-sadowski-open-source.jpeg)
+![carhs-automotive-cae-grand-challenge-2025-aleksander-sadowski-open-source](carhs-automotive-cae-grand-challenge-2025-aleksander-sadowski-open-source.jpg)
 *Figure 7: Presenting the fully open-source workflow for crash simulations in automotive and aerospace at Carhs aCAE Grand Challenge 2025 in Hanau to leaders in automotive engineering, including representatives from BMW AG, Volkswagen AG and Dassault Systemes*
 
 
