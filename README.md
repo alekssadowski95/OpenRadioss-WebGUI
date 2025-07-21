@@ -18,6 +18,10 @@ Quickly get started with OpenRadioss and open-source dynamic simulations. The Op
 2. Pre-Processing with PrePoMax
 3. Solve and visualize with OpenRadioss-WebGUI
 
+## GUI 2.0
+To make it even easier to get started, the GUI will be further simplified, while offering more information.
+![new-ui-element-for-simulations-results](new-ui-element-for-simulations-results.jpeg)
+
 ## Requirements for development environment
 Requires:
 - Python 3.10
