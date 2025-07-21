@@ -41,11 +41,11 @@ Applications of simulations performed using this software, specifically featurin
 ## Fully open-source workflow for crash simulations
 The OpenRadioss-WebGUI simplifies the open-source workflow for crash simulations, that we have developed and validated by combining OpenRadioss with a Post-processing solution, reducing the number of software packages(FreeCAD + PrePoMax + OpenRadioss + ParaView) -> (FreeCAD + PrePoMax + OpenRadioss-WebGUI).
 ![Fully_open-source_workflow_for_crash_simulations](Fully_open-source_workflow_for_crash_simulations.png)
-*Figure 5: Previous workflow overview comprised of FreeCAD, PrePoMax, OpenRadioss and ParaView*
+*Figure 5: Fully open-source workflow for crash simulations overview comprised of FreeCAD, PrePoMax, OpenRadioss and ParaView showcased with a full-width EuroNCAP EV platform crash simulation*
 
 
 ![Fully_open-source_workflow_for_crash_simulations-diagram](Fully_open-source_workflow_for_crash_simulations-diagram.png)
-*Figure 6: Block diagram of the previous workflow, including the interfaces and steps*
+*Figure 6: Block diagram of the fully open-source workflow for crash simulations, including the interfaces and steps*
 
 
 ![carhs-automotive-cae-grand-challenge-2025-aleksander-sadowski-open-source](carhs-automotive-cae-grand-challenge-2025-aleksander-sadowski-open-source.jpg)
