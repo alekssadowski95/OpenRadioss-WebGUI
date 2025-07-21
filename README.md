@@ -23,7 +23,7 @@ To make it even easier to get started, the GUI will be further simplified, while
 ![new-ui-element-for-simulations-results](new-ui-element-for-simulations-results.jpeg)
 
 ## Integrated case study: EV platform EuroNCAP full-width crash simulation
-![ev-platform]ev-platform.png)
+![ev-platform](ev-platform.png)
 
 
 ## Requirements for development environment
