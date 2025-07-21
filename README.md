@@ -2,6 +2,7 @@
 Run and visualize dynamic FEM simulations from Abaqus/ Calculix *.inp files with the explicit open-source OpenRadioss solver.
 
 ![openradioss gui](openradioss-2.png)
+*Figure 1: Impact of a debris particle onto the surface of the ISS*
 
 ## Overview
 Quickly get started with OpenRadioss and open-source dynamic simulations. The OpenRadioss-WebGUI combines :
@@ -21,11 +22,13 @@ Quickly get started with OpenRadioss and open-source dynamic simulations. The Op
 
 ### 1. CAD Geometry in FreeCAD
 ![bullet-freecad](bullet-freecad.png)
+*Figure 2: Creating the CAD geometry for the sperical particle and the simplified ISS hull model*
 ### 2. Pre-Processing with PrePoMax
 ![bullet-prepomax](bullet-prepomax.png)
+*Figure 3: Setting up the impact simulation with non-linear material and fracture*
 ### 3. Solve and visualize with OpenRadioss-WebGUI
 ![bullet-openradioss-webgui](bullet-openradioss-webgui.png)
-
+*Figure 4: Solving the case study and tracking the results with fracture while the simulations is still running in 3D*
 
 ## Integrated case study: EV platform EuroNCAP full-width crash simulation
 ![ev-platform](ev-platform.png)
@@ -33,6 +36,7 @@ Quickly get started with OpenRadioss and open-source dynamic simulations. The Op
 ## Development of GUI 2.0
 To make it even easier to get started, the GUI will be further simplified, while offering more information.
 ![new-ui-element-for-simulations-results](new-ui-element-for-simulations-results.jpeg)
+*Figure 5: Hand drawing of a new user interface concept for the OpenRadioss-WebGUI with inspiration from a film reel*
 
 ## Requirements for development environment
 Requires:
