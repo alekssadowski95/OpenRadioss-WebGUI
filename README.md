@@ -56,10 +56,14 @@ The OpenRadioss-WebGUI simplifies the open-source workflow for crash simulations
 *Figure 8: Presenting fully open-source workflow for crash simulations in automotive at OpenRadioss Users' day 2025. Youtube-Video "OpenRadioss Users' Day 2025 - Opening speech by Eric Lequiniou": https://www.youtube.com/watch?v=LlPGNvs6QUU*
 
 
+![mars-rover-tag-der-raumfahrt-2025-deutsche-raumfahrtagantur-aleksander-sadowski-altair](mars-rover-tag-der-raumfahrt-2025-deutsche-raumfahrtagantur-aleksander-sadowski-altair.png)
+*Figure 9: Presenting fully open-source workflow mars rover drop-off simulation in aerospace at "Tag der Reaumfahrt 2025" from Deutsche Raumfahrtagantur im DLR (German space agency) organized by Alsado and Altair at ALtairs' office in cologne*
+
+
 ## Development of GUI 2.0
 To make it even easier to get started, the GUI will be further simplified, while offering more information.
 ![new-ui-element-for-simulations-results](new-ui-element-for-simulations-results.jpeg)
-*Figure 9: Hand drawing of a new user interface concept for the OpenRadioss-WebGUI with inspiration from a film reel*
+*Figure 10: Hand drawing of a new user interface concept for the OpenRadioss-WebGUI with inspiration from a film reel*
 
 ## Requirements for development environment
 Requires:
