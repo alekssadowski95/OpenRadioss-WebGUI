@@ -38,8 +38,9 @@ Applications of simulations performed using this software, specifically featurin
 - EV Battery pack impact in a crash
 - Deformation and stress of a compressed flat silicone gasket from a hydrogen fuel cell (PEMFC)
   
-## Integrated case study 1: EV platform EuroNCAP full-width crash simulation
-![ev-platform](ev-platform.png)
+## Fully open-source workflow for crash simulations
+The OpenRadioss-WebGUI simplifies the open-source workflow for crash simulations, that we have developed and validated by combining OpenRadioss with a Post-processing solution, reducing the number of software packages(FreeCAD + PrePoMax + OpenRadioss + ParaView) -> (FreeCAD + PrePoMax + OpenRadioss-WebGUI).
+![Fully_open-source_workflow_for_crash_simulations](Fully_open-source_workflow_for_crash_simulations.png)
 
 ## Development of GUI 2.0
 To make it even easier to get started, the GUI will be further simplified, while offering more information.
