@@ -53,7 +53,7 @@ The OpenRadioss-WebGUI simplifies the open-source workflow for crash simulations
 
 
 ![openradioss-users-day-2025-alsado](openradioss-users-day-2025-alsado.png)
-*Figure 8: Presenting fully open-source workflow for crash simulations in automotive at OpenRadioss Users' day 2025*
+*Figure 8: Presenting fully open-source workflow for crash simulations in automotive at OpenRadioss Users' day 2025. Youtube-Video "OpenRadioss Users' Day 2025 - Opening speech by Eric Lequiniou": https://www.youtube.com/watch?v=LlPGNvs6QUU*
 
 
 ## Development of GUI 2.0
