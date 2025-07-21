@@ -30,7 +30,7 @@ Quickly get started with OpenRadioss and open-source dynamic simulations. The Op
 ![bullet-openradioss-webgui](bullet-openradioss-webgui.png)
 *Figure 4: Solving the case study and tracking the results with fracture while the simulations is still running in 3D*
 
-## Applications of dynamic-explicit simulations
+## Applications of dynamic-explicit simulations using OpenRadioss
 Applications of simulations performed using this software, specifically featuring plastic deformation and fracture. These case studies will be integrated into the OpenRadioss-WebGUI:
 - EV platform EuroNCAP full-width crash simulation
 - ISS space particle impact
