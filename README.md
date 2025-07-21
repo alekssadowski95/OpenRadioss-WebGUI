@@ -57,7 +57,7 @@ The OpenRadioss-WebGUI simplifies the open-source workflow for crash simulations
 
 
 ![mars-rover-tag-der-raumfahrt-2025-deutsche-raumfahrtagantur-aleksander-sadowski-altair](mars-rover-tag-der-raumfahrt-2025-deutsche-raumfahrtagantur-aleksander-sadowski-altair.png)
-*Figure 9: Presenting the fully open-source workflow as a mars rover drop-off simulation workshop at "Tag der Reaumfahrt 2025" from Deutsche Raumfahrtagantur im DLR (German space agency at DLR) organized by Alsado and Altair at Altairs' office in cologne*
+*Figure 9: Presenting the fully open-source workflow as a mars rover drop-off simulation workshop at "Tag der Raumfahrt 2025" from Deutsche Raumfahrtagantur im DLR (German space agency at DLR) organized by Alsado and Altair at Altairs' office in Cologne (https://www.tagderraumfahrt25.de/teilnehmer/alsado/)*
 
 
 ![alsado-german-space-actors-openradioss](alsado-german-space-actors-openradioss.png)
