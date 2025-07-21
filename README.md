@@ -67,6 +67,7 @@ Requires:
 - Flask web-framework: https://github.com/pallets/flask
 - FreeCAD: https://github.com/FreeCAD/FreeCAD
 - PrePoMax: https://gitlab.com/MatejB/PrePoMax
+- ParaView: https://github.com/Kitware/ParaView
 - Carhs aCAE Grand Challenge 2025: https://www.carhs.de/en/grand-challenge-overview.html
 - Thank you to Dirk Ulrich and Natalie Golowko for making the talk at Carhs aCAE Grand Challenge 2025 possible
 - Altair (R) Radioss (R): https://altair.com/radioss
