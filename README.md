@@ -1,5 +1,5 @@
 # OpenRadioss-WebGUI
-Run and visualize FEM simulations from Abaqus/ Calculix *.inp files.
+Run and visualize dynamic FEM simulations from Abaqus/ Calculix *.inp files with the explicit open-source OpenRadioss solver.
 
 Quickly get started with OpenRadioss and open-source dynamic simulations. The OpenRadioss-WebGUI combines :
 - OpenRadioss solver
