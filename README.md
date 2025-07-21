@@ -61,7 +61,7 @@ The OpenRadioss-WebGUI simplifies the open-source workflow for crash simulations
 
 
 ![alsado-german-space-actors-openradioss](alsado-german-space-actors-openradioss.png)
-*Figure 10: Offering OpenRadioss as an open-source simulation tool in aerospace through the catalogue of German space actors by the German space agency at DLR*
+*Figure 10: Presening OpenRadioss as an open-source simulation tool in aerospace through the catalogue of German space actors by the German space agency at DLR*
 
 
 
