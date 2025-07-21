@@ -38,4 +38,11 @@ To make it even easier to get started, the GUI will be further simplified, while
 Requires:
 - Python 3.10
 
+## Credits
+- OpenRadioss solver: https://github.com/OpenRadioss/OpenRadioss
+- OpenRadioss inp2rad: https://github.com/OpenRadioss/Tools/tree/main/input_converters/inp2rad
+- three.js: https://github.com/mrdoob/three.js/
+- Flask web-framework: https://github.com/pallets/flask
+- FreeCAD: https://github.com/FreeCAD/FreeCAD
+- PrePoMax: https://gitlab.com/MatejB/PrePoMax
 
