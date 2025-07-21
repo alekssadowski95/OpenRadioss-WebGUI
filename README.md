@@ -69,7 +69,7 @@ Requires:
 - PrePoMax: https://gitlab.com/MatejB/PrePoMax
 - ParaView: https://github.com/Kitware/ParaView
 - Carhs aCAE Grand Challenge 2025: https://www.carhs.de/en/grand-challenge-overview.html
-- Thank you to Dirk Ulrich and Natalie Golowko for making the talk at Carhs aCAE Grand Challenge 2025 possible
+- Thank you to Dirk Ulrich, Axel Hänschke and Natalie Golowko for making the talk at Carhs aCAE Grand Challenge 2025 possible
 - Altair (R) Radioss (R): https://altair.com/radioss
 - Thank you to Eric Lequiniou, Marian Bulla and Paul Sharp from Altair Engineering for your help on moving this project and the fully open-source workflow for crash simulations forward, democratizing dynamic-explicit simulations tools.
 
