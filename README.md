@@ -16,8 +16,11 @@ Quickly get started with OpenRadioss and open-source dynamic simulations. The Op
   
 ## Getting started
 1. Create CAD geometry in FreeCAD
+![bullet-freecad](bullet-freecad.png)
 2. Pre-Processing with PrePoMax
+![bullet-prepomax](bullet-prepomax.png)
 3. Solve and visualize with OpenRadioss-WebGUI
+![bullet-openradioss-webgui](bullet-openradioss-webgui.png)
 
 ## Integrated case study: EV platform EuroNCAP full-width crash simulation
 ![ev-platform](ev-platform.png)
