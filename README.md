@@ -22,6 +22,10 @@ Quickly get started with OpenRadioss and open-source dynamic simulations. The Op
 To make it even easier to get started, the GUI will be further simplified, while offering more information.
 ![new-ui-element-for-simulations-results](new-ui-element-for-simulations-results.jpeg)
 
+## Integrated case study: EV platform EuroNCAP full-width crash simulation
+![ev-platform]ev-platform.png)
+
+
 ## Requirements for development environment
 Requires:
 - Python 3.10
