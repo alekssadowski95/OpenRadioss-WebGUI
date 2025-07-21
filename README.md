@@ -7,7 +7,7 @@ Run and visualize dynamic FEM simulations from Abaqus/ Calculix *.inp files with
 ## Overview
 Quickly get started with OpenRadioss and open-source dynamic simulations. The OpenRadioss-WebGUI combines :
 - OpenRadioss solver
-- 3D WebWiewer VTK for unstructured meshes (based on three.js)
+- 3D WebViewer VTK for unstructured meshes (based on three.js)
 - Web-framework based on Flask (Webapp)
 - Desktop-app deployment 
 - Integrated dynamic, explicit simulation examples for teaching students
