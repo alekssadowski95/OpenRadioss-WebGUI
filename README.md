@@ -49,7 +49,7 @@ The OpenRadioss-WebGUI simplifies the open-source workflow for crash simulations
 
 *Figure 6: Block diagram of the previous workflow, including the interfaces and steps*
 ![carhs-automotive-cae-grand-challenge-2025-aleksander-sadowski-open-source](carhs-automotive-cae-grand-challenge-2025-aleksander-sadowski-open-source.jpg)
-*Figure 7: Presenting the fully open-source workflow for crash simulations in automotive and aerospace at Carhs aCAE Grand Challenge 2025 in Hanau to leaders in automotive engineering, including representatives from BMW AG, Volkswagen AG and Dassault Systemes. Credit: Natalie Golowko*
+*Figure 7: Presenting the fully open-source workflow for crash simulations in automotive and aerospace at Carhs aCAE Grand Challenge 2025 in Hanau (https://www.carhs.de/en/grand-challenge-overview.html) to leaders in automotive engineering, including representatives from BMW AG, Volkswagen AG and Dassault Systemes. Credit: Natalie Golowko*
 
 ## Development of GUI 2.0
 To make it even easier to get started, the GUI will be further simplified, while offering more information.
@@ -67,4 +67,5 @@ Requires:
 - Flask web-framework: https://github.com/pallets/flask
 - FreeCAD: https://github.com/FreeCAD/FreeCAD
 - PrePoMax: https://gitlab.com/MatejB/PrePoMax
+- Carhs aCAE Grand Challenge 2025: https://www.carhs.de/en/grand-challenge-overview.html
 
