@@ -1,5 +1,5 @@
 # OpenRadioss-WebGUI
-Run and visualize dynamic FEM simulations from Abaqus/ Calculix *.inp files with the explicit open-source OpenRadioss solver.
+Run and visualize dynamic FEM simulations from Abaqus/ Calculix *.inp files with the explicit open-source OpenRadioss solver and get OpenRadioss into the hands of mechanical engineering students.
 
 ![openradioss gui](openradioss-2.png)
 *Figure 1: Impact of a debris particle onto the surface of the ISS*
